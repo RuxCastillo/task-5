@@ -1,0 +1,38 @@
+body {
+	font-family: sans-serif;
+}
+
+.header {
+	position: sticky;
+}
+
+.options {
+	margin: auto;
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.option {
+	display: flex;
+	flex-direction: column;
+	border: 1px solid black;
+	border-radius: 4px;
+	padding: 0.5rem;
+}
+
+.option__label {
+	font-size: 0.75rem;
+	opacity: 0.8;
+}
+
+.option__input {
+	border: none;
+	outline: none;
+}
+
+.header__books {
+	display: flex;
+	justify-content: space-around;
+	border-bottom: 1px solid black;
+	font-weight: bold;
+}
