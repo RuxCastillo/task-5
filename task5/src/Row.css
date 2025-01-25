@@ -1,0 +1,12 @@
+.row {
+	display: grid;
+	grid-template-columns: 0.3fr 1fr 1fr 1fr 1fr;
+	justify-items: center;
+	flex-grow: 0;
+	border-bottom: 1px solid gray;
+	text-align: center;
+}
+
+.row > * {
+	padding: 0.25rem;
+}

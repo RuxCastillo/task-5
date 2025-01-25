@@ -4,6 +4,9 @@ body {
 
 .header {
 	position: sticky;
+	top: 0;
+	background-color: #f7f7f7;
+	padding-top: 0.5rem;
 }
 
 .options {
@@ -31,8 +34,9 @@ body {
 }
 
 .header__books {
-	display: flex;
-	justify-content: space-around;
+	display: grid;
 	border-bottom: 1px solid black;
 	font-weight: bold;
+	grid-template-columns: 0.3fr 1fr 1fr 1fr 1fr;
+	text-align: center;
 }

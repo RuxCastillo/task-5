@@ -1,9 +1,9 @@
 import './Header.css';
 
-export default function Header() {
+export default function Header({ handleSeed, seed, range, handleRange }) {
 	return (
-		<main>
-			<section className="header">
+		<section className="header">
+			<section>
 				<div className="options">
 					<div className="option">
 						<label className="option__label" htmlFor="language">
@@ -19,7 +19,12 @@ export default function Header() {
 						<label htmlFor="seed" className="option__label">
 							Seed
 						</label>
-						<input type="text" className="option__input" />
+						<input
+							type="number"
+							className="option__input"
+							value={seed}
+							onChange={handleSeed}
+						/>
 					</div>
 					<div className="option">
 						<label htmlFor="likes" className="option__label">
@@ -29,7 +34,10 @@ export default function Header() {
 							type="range"
 							name="likes"
 							id="likes"
+							value={range}
+							onChange={handleRange}
 							min="0"
+							step="0.1"
 							max="10"
 							className="option__input"
 						/>
@@ -54,6 +62,6 @@ export default function Header() {
 				<p>Author(s)</p>
 				<p>Publisher</p>
 			</section>
-		</main>
+		</section>
 	);
 }
