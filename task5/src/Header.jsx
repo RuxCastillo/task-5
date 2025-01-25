@@ -1,6 +1,15 @@
 import './Header.css';
 
-export default function Header({ handleSeed, seed, range, handleRange }) {
+export default function Header({
+	handleSeed,
+	seed,
+	range,
+	handleRange,
+	review,
+	handleReview,
+	language,
+	handleLanguage,
+}) {
 	return (
 		<section className="header">
 			<section>
@@ -9,10 +18,16 @@ export default function Header({ handleSeed, seed, range, handleRange }) {
 						<label className="option__label" htmlFor="language">
 							Language
 						</label>
-						<select name="language" id="language" className="option__input">
-							<option value="english">English</option>
-							<option value="spanish">Spanish</option>
-							<option value="russian">Russian</option>
+						<select
+							name="language"
+							id="language"
+							className="option__input"
+							value={language}
+							onChange={handleLanguage}
+						>
+							<option value="en">English</option>
+							<option value="es">Spanish</option>
+							<option value="ru">Russian</option>
 						</select>
 					</div>
 					<div className="option">
@@ -51,6 +66,9 @@ export default function Header({ handleSeed, seed, range, handleRange }) {
 							name="review"
 							id="review"
 							className="option__input"
+							value={review}
+							onChange={handleReview}
+							step="0.1"
 						/>
 					</div>
 				</div>

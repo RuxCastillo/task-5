@@ -1,11 +1,12 @@
 body {
 	font-family: sans-serif;
+	overflow-y: scroll;
 }
 
 .header {
 	position: sticky;
 	top: 0;
-	background-color: #f7f7f7;
+	background-color: #fff;
 	padding-top: 0.5rem;
 }
 
