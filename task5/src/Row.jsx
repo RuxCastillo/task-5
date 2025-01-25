@@ -43,14 +43,15 @@ export default function Row({
 						<img src={image} alt="" className="img" />
 					</div>
 					<div>
-						<p>{title}</p>
-						<p>{format}</p>
-						<p>{author}</p>
-						<p>{review}</p>
+						<p className="title">{title}</p>
+						<p className="format">{format}</p>
+						<p className="author">{author}</p>
+						<p className="reviews__title">Reviews</p>
+						<p className="reviews">{review}</p>
 						{array.map((review) => {
 							return <p className="sentence">{faker.lorem.sentence()}</p>;
 						})}
-						<p>Likes: {avrLikes}</p>
+						<p className="likes">Likes: {avrLikes}</p>
 					</div>
 				</section>
 			)}

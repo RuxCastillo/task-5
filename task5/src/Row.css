@@ -19,6 +19,7 @@
 .details {
 	display: flex;
 	grid-column: 1/-1;
+	text-align: left;
 }
 
 .img {
@@ -26,4 +27,31 @@
 }
 
 .sentence {
+}
+
+.title {
+	font-weight: bold;
+	font-size: 1.5rem;
+	display: inline;
+}
+
+.format {
+	font-size: 0.75rem;
+	opacity: 0.8;
+	display: inline;
+	margin-left: 0.5rem;
+}
+
+.reviews__title {
+	font-weight: bold;
+	font-size: 1.25rem;
+}
+
+.likes {
+	background-color: blue;
+	border-radius: 999px;
+	padding: 0.5rem 1rem;
+	font-size: 0.7rem;
+	color: white;
+	width: fit-content;
 }
