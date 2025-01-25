@@ -10,3 +10,20 @@
 .row > * {
 	padding: 0.25rem;
 }
+
+.row:hover {
+	background-color: #f0f0f0;
+	cursor: pointer;
+}
+
+.details {
+	display: flex;
+	grid-column: 1/-1;
+}
+
+.img {
+	margin-right: 2rem;
+}
+
+.sentence {
+}

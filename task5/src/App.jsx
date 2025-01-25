@@ -22,12 +22,67 @@ function App() {
 		}
 		currentFaker.seed(Number(seed));
 		console.log(seed, language);
+
+		// Generar nuevos libros
+		const newBooks = Array.from({ length: 500 }, () => ({
+			isbn: currentFaker.commerce.isbn(),
+			title: currentFaker.book.title(3),
+			author: currentFaker.person.fullName(),
+			publisher: currentFaker.book.publisher(),
+			image: currentFaker.image.url({ width: 200, height: 300 }),
+			format: currentFaker.book.format(),
+			sentence: currentFaker.lorem.sentence(),
+			avrLikes: currentFaker.number.float({
+				min: 0,
+				max: 10,
+				precision: 0.1,
+				fractionDigits: 1,
+			}),
+			avrReviews: currentFaker.number.float({
+				min: 0,
+				max: 10,
+				precision: 0.1,
+				fractionDigits: 1,
+			}),
+		}));
+
+		// Aplicar filtros antes de agregar los libros al estado
+		const filteredBooks = newBooks.filter((book) => {
+			const avrReviewsFloor = Math.floor(book.avrReviews);
+			const avrLikesFloor = Math.floor(book.avrLikes);
+
+			// Aplicar filtro de reviews
+			const reviewFilter =
+				review > 0 ? avrReviewsFloor === Math.floor(review) : true;
+
+			// Aplicar filtro de range (likes)
+			const rangeFilter =
+				range > 0 ? avrLikesFloor === Math.floor(range) : true;
+
+			return reviewFilter && rangeFilter;
+		});
+
+		// Agregar los libros filtrados al estado
+		setBooks((prevState) => [...prevState, ...filteredBooks]);
+	};
+
+	/* 	const generateBooks = () => {
+		let currentFaker = faker;
+		if (language === 'es') {
+			currentFaker = fakerES;
+		} else if (language === 'ru') {
+			currentFaker = fakerRU;
+		}
+		currentFaker.seed(Number(seed));
+		console.log(seed, language);
 		const newBooks = Array.from({ length: 20 }, () => ({
 			isbn: currentFaker.commerce.isbn(),
 			title: currentFaker.book.title(3),
 			author: currentFaker.person.fullName(),
 			publisher: currentFaker.book.publisher(),
-			review: currentFaker.lorem.sentences(2),
+			image: currentFaker.image.url({ width: 200, height: 300 }),
+			format: currentFaker.book.format(),
+			sentence: currentFaker.lorem.sentence(),
 			avrLikes: currentFaker.number.float({
 				min: 0,
 				max: 10,
@@ -46,11 +101,28 @@ function App() {
 
 	function agregarLibros(newBooks) {
 		count = 1;
-		newBooks = newBooks.filter((book) => book.avrReviews > review);
-		newBooks = newBooks.filter((book) => book.avrLikes > range);
+		if (review > 0) {
+			newBooks = newBooks.filter((book) => {
+				const avrReviewsFloor = Math.floor(book.avrReviews);
+				return (
+					avrReviewsFloor === Math.floor(review) ||
+					avrReviewsFloor === Math.ceil(review)
+				);
+			});
+		}
+		if (range > 0) {
+			newBooks = newBooks.filter((book) => {
+				const avrLikesFloor = Math.floor(book.avrLikes);
+				return (
+					avrLikesFloor === Math.floor(range) ||
+					avrLikesFloor === Math.ceil(range)
+				);
+			});
+		}
 		setBooks((prevState) => [...prevState, ...newBooks]);
-	}
+	} */
 	useEffect(() => {
+		setBooks([]);
 		generateBooks();
 	}, [seed, range, review, language]);
 
