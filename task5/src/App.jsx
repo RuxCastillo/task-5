@@ -9,8 +9,8 @@ let count = 1;
 function App() {
 	const [books, setBooks] = useState([]);
 	const [seed, setSeed] = useState(0);
-	const [range, setRange] = useState(0);
-	const [review, setReview] = useState(0);
+	const [range, setRange] = useState();
+	const [review, setReview] = useState();
 	const [language, setLanguage] = useState('en');
 
 	const generateBooks = () => {
@@ -25,10 +25,14 @@ function App() {
 
 		// Generar nuevos libros
 		const newBooks = Array.from({ length: 500 }, () => ({
+			title:
+				language === 'en'
+					? currentFaker.book.title(3)
+					: currentFaker.lorem.words(3),
 			isbn: currentFaker.commerce.isbn(),
-			title: currentFaker.book.title(3),
 			author: currentFaker.person.fullName(),
-			publisher: currentFaker.book.publisher(),
+			publisher: currentFaker.company.name(),
+			//publisher: currentFaker.book.publisher(),
 			image: currentFaker.image.url({ width: 200, height: 300 }),
 			format: currentFaker.book.format(),
 			sentence: currentFaker.lorem.sentence(),
@@ -53,11 +57,11 @@ function App() {
 
 			// Aplicar filtro de reviews
 			const reviewFilter =
-				review > 0 ? avrReviewsFloor === Math.floor(review) : true;
+				review > -1 ? avrReviewsFloor === Math.floor(review) : true;
 
 			// Aplicar filtro de range (likes)
 			const rangeFilter =
-				range > 0 ? avrLikesFloor === Math.floor(range) : true;
+				range > -1 ? avrLikesFloor === Math.floor(range) : true;
 
 			return reviewFilter && rangeFilter;
 		});
@@ -122,6 +126,7 @@ function App() {
 		setBooks((prevState) => [...prevState, ...newBooks]);
 	} */
 	useEffect(() => {
+		count = 1;
 		setBooks([]);
 		generateBooks();
 	}, [seed, range, review, language]);
